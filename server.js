@@ -1,3 +1,6 @@
+// TEST CODE
+
+// Starting point
 console.log("web serverni boshlash");
 const express = require("express");
 const app = express();
