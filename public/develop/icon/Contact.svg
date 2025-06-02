@@ -1,0 +1,42 @@
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="18" height="18" fill="#E5E5E5"/>
+<g id="Home One page- Light" clip-path="url(#clip0_0_1)">
+<rect width="1440" height="8063" transform="translate(-1377 -718)" fill="#F0F0F6"/>
+<g id="Right Menu">
+<g id="Rectangle 25" filter="url(#filter0_d_0_1)">
+<rect x="-45" y="-718" width="108" height="1315" fill="#FAFAFA"/>
+</g>
+<g id="Menu">
+<g id="Contact">
+<circle id="Ellipse 14" cx="9" cy="9" r="20" fill="#F0F0F6"/>
+<g id="Icons/Contact">
+<g id="Icons/Contact_2">
+<g id="Icons/Contact_3">
+<g id="Icons/Contact_4" clip-path="url(#clip1_0_1)">
+<path id="Vector" d="M4.84125 14.25L1.5 16.875V3C1.5 2.80109 1.57902 2.61032 1.71967 2.46967C1.86032 2.32902 2.05109 2.25 2.25 2.25H15.75C15.9489 2.25 16.1397 2.32902 16.2803 2.46967C16.421 2.61032 16.5 2.80109 16.5 3V13.5C16.5 13.6989 16.421 13.8897 16.2803 14.0303C16.1397 14.171 15.9489 14.25 15.75 14.25H4.84125Z" fill="#767676"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_0_1" x="-51" y="-728" width="128" height="1335" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="4"/>
+<feGaussianBlur stdDeviation="5"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.184314 0 0 0 0 0.478431 0 0 0 0 0.976471 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+</filter>
+<clipPath id="clip0_0_1">
+<rect width="1440" height="8063" fill="white" transform="translate(-1377 -718)"/>
+</clipPath>
+<clipPath id="clip1_0_1">
+<rect width="18" height="18" fill="white"/>
+</clipPath>
+</defs>
+</svg>
