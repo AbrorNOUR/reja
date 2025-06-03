@@ -296,6 +296,60 @@ button {
     
 }
 
+/* midd frsme squares  */
+
+.ellipse {
+    position: absolute;
+    top: 10px;
+    
+}
+
+.Elli {
+    position: absolute;
+    right: 0px;
+}
+
+.Ellip {
+    position: absolute;
+    left: 10px;
+}
+
+.poly {
+    position: relative;
+    bottom: 220px;
+    right: 20px;
+}
+.rec {
+    position: relative;
+    bottom: 290px;
+    left: 800px;
+}
+
+
+.recc {
+    position: relative;
+    left: 400px;
+}
+
+.polyy {
+    position: relative;
+    left: 500px;
+    bottom: 290px;
+}
+
+
+ /* .btonimg {
+    display: flex;
+    padding: 16px 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    border: none;
+
+ } */
+
 .serv {
     margin-top: 200px;
     justify-content: space-evenly;
@@ -323,7 +377,7 @@ button {
         width: 310px;
         height: 200px;
         background-color: white;
-    padding-top: 20px;
+        padding-top: 20px;
     }
 
 
