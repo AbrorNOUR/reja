@@ -84,17 +84,58 @@
 //Shunday 2 parametrli function tuzing, hamda birinchi parametrdagi letterni ikkinchi parametrdagi sozdan qatnashga sonini return qilishi kerak boladi.
 //MASALAN countLetter("e", "engineer") 3ni return qiladi.
 
-function countLetter(a, b) {
-    let count = 0;
+// function countLetter(a, b) {
+//     let count = 0;
 
-    for (let harfIndex = 0; harfIndex < b.length; harfIndex++) {
-        if (b[harfIndex] === a)  {
-            count++;
-        }
-    }
+//     for (let harfIndex = 0; harfIndex < b.length; harfIndex++) {
+//         if (b[harfIndex] === a)  {
+//             count++;
+//         }
+//     }
     
-    return count;
+//     return count;
+// }
+
+
+// console.log("Natija:", countLetter("e", "engineer"));
+
+
+
+// console.log("===== EXECUTE =====");
+
+// // DEFINE
+// function qoldiqliBolish(a, b, chaqirish) {
+//   if (b === 0) {
+//     chaqirish("Mahraj nolga teng bololmaydi", null);
+//   } else {
+//     chaqirish(null, b % a);
+//   }
+// }
+
+// // CALL
+// qoldiqliBolish(10, 0, (data, err) => {
+//   if (data) console.log("data:", data);
+//   else {
+//     console.log("Error:", err);
+//   }
+// });
+
+
+console.log("===== EXECUTE =====");
+
+// DEFINE
+function ayrish(a, b, callback) {
+  if (b === 10) {
+    callback("bizga 15 soni kerak!", null);
+  } else {
+    callback(null, a - b);
+  }
 }
 
-
-console.log("Natija:", countLetter("e", "engineer"));
+// CALL
+ayrish(30, 15, (err, data) => {
+  if (err) console.log("Error:", err);
+  else {
+    console.log("data:", data);
+  }
+});
