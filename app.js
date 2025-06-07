@@ -7,7 +7,8 @@ const app = express();
 const fs = require("fs");
 
 
-// MongoDB connect
+// MongoDB chaqirish
+const db = require("./server").db();
 
 
 
