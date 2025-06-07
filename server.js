@@ -4,8 +4,6 @@ const mongodb = require("mongodb");
 let db;
 const connectionString = "mongodb+srv://Nour:wgc5kKOs958n0VXB@cluster0.cqhoihe.mongodb.net/Reja?retryWrites=true&w=majority";
 
-
-
 mongodb.connect(connectionString, {
     useNewUrlParser: true, 
     useUnifiedTopology: true,

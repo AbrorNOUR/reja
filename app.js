@@ -29,7 +29,6 @@ app.use(express.urlencoded({extended: true}));
 
 // 2: Session
 
-
 // 3: Views code  backend server ichida  frontend ni qurish 2 xil usuli bor  BSSR
 app.set("views", "views");
 app.set("view engine", "ejs"); // 1: usul tradational usul htmlni qurib olib browserga jonatamz  2: usul single app react
@@ -44,9 +43,21 @@ app.set("view engine", "ejs"); // 1: usul tradational usul htmlni qurib olib bro
 // });
 
 app.post("/create-item", (req, res) => {
-    console.log(req.body);
-    res.json({test: "success" })
-})
+    console.log("user entered /creste-item");
+    // console.log(req.body);
+    const new_reja = req.body.reja;
+    db.collection("plans").insertOne({reja: new_reja}, (err, data) => {
+        if (err) {
+            console.log(err);
+            res.end("something went wrong");
+        } else {
+            res.end("seccessfully added");
+        }
+    });
+
+    // res.end("success");
+    // res.json({test: "success" })
+});
 
 app.get('/develop', (req, res) => {
     res.render("develop", { user: user });
@@ -54,7 +65,18 @@ app.get('/develop', (req, res) => {
 
 
 app.get("/", function (req, res) {
-    res.render("reja");
+    console.log("user entered /");
+    db.collection("plans")
+    .find()
+    .toArray((err, data) => {
+        if(err) {
+            console.log(err);
+            res.end("something went wrong");
+        } else {
+            // console.log(data);
+            res.render("reja", {items: data });
+        }
+    });
 });
 
 module.exports = app;

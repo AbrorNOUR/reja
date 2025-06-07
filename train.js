@@ -1,3 +1,44 @@
+//B-TASK:
+
+function countDigits(text) {
+  let count = 0;
+  for (let ele of text) {
+    if (ele >= '0' && ele <= '9') {
+      count++;
+    }
+  }
+  return count;
+  
+} 
+console.log(countDigits("h9kj1kjk7eyt4jgg3oii9g5jgd6bg3"));
+
+
+
+
+
+//A-TASK: 
+
+//Shunday 2 parametrli function tuzing, hamda birinchi parametrdagi letterni ikkinchi parametrdagi sozdan qatnashga sonini return qilishi kerak boladi.
+//MASALAN countLetter("e", "engineer") 3ni return qiladi.
+
+// function countLetter(a, b) {
+//     let count = 0;
+
+//     for (let harfIndex = 0; harfIndex < b.length; harfIndex++) {
+//         if (b[harfIndex] === a)  {
+//             count++;
+//         }
+//     }
+    
+//     return count;
+// }
+
+
+// console.log("Natija:", countLetter("e", "engineer"));
+
+
+
+
 // console.log("Jack Ma maslahatlari");
 // const list = [
 // "yahshi talaba boling", // 0-20
@@ -79,28 +120,6 @@
 
 
 
-//A-TASK: 
-
-//Shunday 2 parametrli function tuzing, hamda birinchi parametrdagi letterni ikkinchi parametrdagi sozdan qatnashga sonini return qilishi kerak boladi.
-//MASALAN countLetter("e", "engineer") 3ni return qiladi.
-
-// function countLetter(a, b) {
-//     let count = 0;
-
-//     for (let harfIndex = 0; harfIndex < b.length; harfIndex++) {
-//         if (b[harfIndex] === a)  {
-//             count++;
-//         }
-//     }
-    
-//     return count;
-// }
-
-
-// console.log("Natija:", countLetter("e", "engineer"));
-
-
-
 // console.log("===== EXECUTE =====");
 
 // // DEFINE
@@ -121,21 +140,21 @@
 // });
 
 
-console.log("===== EXECUTE =====");
+// console.log("===== EXECUTE =====");
 
-// DEFINE
-function ayrish(a, b, callback) {
-  if (b === 10) {
-    callback("bizga 15 soni kerak!", null);
-  } else {
-    callback(null, a - b);
-  }
-}
+// // DEFINE
+// function ayrish(a, b, callback) {
+//   if (b === 10) {
+//     callback("bizga 15 soni kerak!", null);
+//   } else {
+//     callback(null, a - b);
+//   }
+// }
 
-// CALL
-ayrish(30, 15, (err, data) => {
-  if (err) console.log("Error:", err);
-  else {
-    console.log("data:", data);
-  }
-});
+// // CALL
+// ayrish(30, 15, (err, data) => {
+//   if (err) console.log("Error:", err);
+//   else {
+//     console.log("data:", data);
+//   }
+// });
