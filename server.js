@@ -12,10 +12,9 @@ mongodb.connect(connectionString, {
     if(err) console.log("ERROR onn connection MongoDB");
     else {
         console.log("MongoDB connection succeed")
+        
          // db ni export qilmoqchi bo‘lsangiz:
         module.exports = client;
-
-        // console.log(client);
 
         const app = require("./app");
         const server = http.createServer(app);

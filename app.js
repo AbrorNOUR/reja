@@ -24,9 +24,9 @@ const mongodb = require("mongodb");
 // });
 
 // 1: Kirish code   backend serverni qurdik Node.jsda express frame workdan foydalanib web serverni qurdik
-app.use(express.static("public"));
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));  
+app.use(express.static("public"));            
+app.use(express.json());                 // JSON uchun
+app.use(express.urlencoded({extended: true}));  // formalar uchun
 
 // 2: Session
 
@@ -44,7 +44,7 @@ app.set("view engine", "ejs"); // 1: usul tradational usul htmlni qurib olib bro
 // });
 
 app.post("/create-item", (req, res) => {
-    console.log("user entered /creste-item");
+    console.log("user entered /create-item");
     // console.log(req.body);
     const new_reja = req.body.reja;
     db.collection("plans").insertOne({reja: new_reja}, (err, data) => {
@@ -55,6 +55,7 @@ app.post("/create-item", (req, res) => {
     // res.end("success");
     // res.json({test: "success" })
 });
+
 
 app.get('/develop', (req, res) => {
     res.render("develop", { user: user });
