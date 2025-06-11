@@ -1,16 +1,29 @@
+//C-TASK:
+function isSameLetters(same1, same2) {
+  const same = word => word.split('').sort().join('');
+
+  if (same(same1) === same(same2)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+console.log(isSameLetters('practice', 'icetcarp'));
+
 //B-TASK:
 
-function countDigits(text) {
-  let count = 0;
-  for (let ele of text) {
-    if (ele >= '0' && ele <= '9') {
-      count++;
-    }
-  }
-  return count;
+// function countDigits(text) {
+//   let count = 0;
+//   for (let ele of text) {
+//     if (ele >= '0' && ele <= '9') {
+//       count++;
+//     }
+//   }
+//   return count;
   
-} 
-console.log(countDigits("h9kj1kjk7eyt4jgg3oii9g5jgd6bg3"));
+// } 
+// console.log(countDigits("h9kj1kjk7eyt4jgg3oii9g5jgd6bg3"));
 
 
 
