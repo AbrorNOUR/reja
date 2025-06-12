@@ -69,6 +69,14 @@ app.post("/delete-item", (req, res) => {
     })
 });
 
+// API edit oper
+app.post("/edit-item", (req, res) => {
+    const data = req.body;
+    console.log(data);
+    db.collection("plans").findOneAndUpdate
+    res.end("Done");
+})
+
 
 app.get("/", function (req, res) {
     console.log("user entered /");
