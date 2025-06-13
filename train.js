@@ -1,15 +1,70 @@
-//C-TASK:
-function isSameLetters(same1, same2) {
-  const same = word => word.split('').sort().join('');
+//D-TASK:
+class Shop {
+  constructor(non, lagmon, cola) {
+    this.non = non;
+    this.lagmon = lagmon;
+    this.cola = cola;
+  }
 
-  if (same(same1) === same(same2)) {
-    return true;
-  } else {
-    return false;
+  // Mahsulot qoldigi
+  qoldiq() {
+    const vaqt = new Date().toLocaleTimeString();
+    console.log(`Hozir ${vaqt}da ${this.non} ta non, ${this.lagmon} ta lagmon, ${this.cola} ta cola mavjud!`);
+  }
+
+  // Mahsulot sotish
+  sotish(nomi, miqdor) {
+    const vaqt = new Date().toLocaleTimeString();
+
+    if (this[nomi] === undefined) {
+      console.log(`Hozir ${vaqt}da ${nomi} degan mahsulot mavjud emas`);
+      return;
+    }
+
+    if (this[nomi] >= miqdor) {
+      this[nomi] -= miqdor;
+      console.log(`Hozir ${vaqt}da ${miqdor} ta ${nomi} sotildi`);
+    } else {
+      console.log(`Hozir ${vaqt}da yetarli ${nomi} yo'q. Qolgan: ${this[nomi]} ta`);
+    }
+  }
+
+  // Mahsulot qabul 
+  qabul(nomi, miqdor) {
+    const vaqt = new Date().toLocaleTimeString();
+
+    if (this[nomi] === undefined) {
+      console.log(`Hozir ${vaqt}da "${nomi}" degan mahsulot mavjud emas`);
+      return;
+    }
+
+    this[nomi] += miqdor;
+    console.log(`Hozir ${vaqt}da ${miqdor} ta ${nomi} qabul qilindi`);
   }
 }
 
-console.log(isSameLetters('practice', 'icetcarp'));
+const shop = new Shop(5, 4, 5);
+shop.qoldiq();
+shop.sotish("non", 2);
+shop.qabul("cola", 3);
+shop.qoldiq();
+
+
+
+
+
+//C-TASK:
+// function isSameLetters(same1, same2) {
+//   const same = word => word.split('').sort().join('');
+
+//   if (same(same1) === same(same2)) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+
+// console.log(isSameLetters('practice', 'icetcarp'));
 
 //B-TASK:
 
