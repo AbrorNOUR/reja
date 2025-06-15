@@ -1,53 +1,63 @@
-//D-TASK:
-class Shop {
-  constructor(non, lagmon, cola) {
-    this.non = non;
-    this.lagmon = lagmon;
-    this.cola = cola;
-  }
+//E-TASK:
+function myString (str) {
+  return str.split('').reverse().join('');
 
-  // Mahsulot qoldigi
-  qoldiq() {
-    const vaqt = new Date().toLocaleTimeString();
-    console.log(`Hozir ${vaqt}da ${this.non} ta non, ${this.lagmon} ta lagmon, ${this.cola} ta cola mavjud!`);
-  }
 
-  // Mahsulot sotish
-  sotish(nomi, miqdor) {
-    const vaqt = new Date().toLocaleTimeString();
-
-    if (this[nomi] === undefined) {
-      console.log(`Hozir ${vaqt}da ${nomi} degan mahsulot mavjud emas`);
-      return;
-    }
-
-    if (this[nomi] >= miqdor) {
-      this[nomi] -= miqdor;
-      console.log(`Hozir ${vaqt}da ${miqdor} ta ${nomi} sotildi`);
-    } else {
-      console.log(`Hozir ${vaqt}da yetarli ${nomi} yo'q. Qolgan: ${this[nomi]} ta`);
-    }
-  }
-
-  // Mahsulot qabul 
-  qabul(nomi, miqdor) {
-    const vaqt = new Date().toLocaleTimeString();
-
-    if (this[nomi] === undefined) {
-      console.log(`Hozir ${vaqt}da "${nomi}" degan mahsulot mavjud emas`);
-      return;
-    }
-
-    this[nomi] += miqdor;
-    console.log(`Hozir ${vaqt}da ${miqdor} ta ${nomi} qabul qilindi`);
-  }
 }
+ 
+console.log(myString('MongoDB'));
 
-const shop = new Shop(5, 4, 5);
-shop.qoldiq();
-shop.sotish("non", 2);
-shop.qabul("cola", 3);
-shop.qoldiq();
+
+//D-TASK:
+// class Shop {
+//   constructor(non, lagmon, cola) {
+//     this.non = non;
+//     this.lagmon = lagmon;
+//     this.cola = cola;
+//   }
+
+//   // Mahsulot qoldigi
+//   qoldiq() {
+//     const vaqt = new Date().toLocaleTimeString();
+//     console.log(`Hozir ${vaqt}da ${this.non} ta non, ${this.lagmon} ta lagmon, ${this.cola} ta cola mavjud!`);
+//   }
+
+//   // Mahsulot sotish
+//   sotish(nomi, miqdor) {
+//     const vaqt = new Date().toLocaleTimeString();
+
+//     if (this[nomi] === undefined) {
+//       console.log(`Hozir ${vaqt}da ${nomi} degan mahsulot mavjud emas`);
+//       return;
+//     }
+
+//     if (this[nomi] >= miqdor) {
+//       this[nomi] -= miqdor;
+//       console.log(`Hozir ${vaqt}da ${miqdor} ta ${nomi} sotildi`);
+//     } else {
+//       console.log(`Hozir ${vaqt}da yetarli ${nomi} yo'q. Qolgan: ${this[nomi]} ta`);
+//     }
+//   }
+
+//   // Mahsulot qabul 
+//   qabul(nomi, miqdor) {
+//     const vaqt = new Date().toLocaleTimeString();
+
+//     if (this[nomi] === undefined) {
+//       console.log(`Hozir ${vaqt}da "${nomi}" degan mahsulot mavjud emas`);
+//       return;
+//     }
+
+//     this[nomi] += miqdor;
+//     console.log(`Hozir ${vaqt}da ${miqdor} ta ${nomi} qabul qilindi`);
+//   }
+// }
+
+// const shop = new Shop(5, 4, 5);
+// shop.qoldiq();
+// shop.sotish("non", 2);
+// shop.qabul("cola", 3);
+// shop.qoldiq();
 
 
 
