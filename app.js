@@ -72,6 +72,8 @@ app.post("/delete-item", (req, res) => {
 // API edit oper
 app.post("/edit-item", (req, res) => {
     const data = req.body;
+    console.log(req.body);
+
     console.log(data);
     db.collection("plans").findOneAndUpdate(
         {_id: new mongodb.ObjectId(data.id)}, 

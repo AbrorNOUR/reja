@@ -1,11 +1,25 @@
-//E-TASK:
-function myString (str) {
-  return str.split('').reverse().join('');
-
-
+//F-TASK:
+function findDoublers (str) {
+  for (let alp of str) {
+    if (str.indexOf(alp) !== str.lastIndexOf(alp) )
+    return true;
+  }
+  return false;
 }
+
+console.log(findDoublers('getElementById'));
+
+console.log(findDoublers('document'));
+
+
+//E-TASK:
+// function myString (str) {
+//   return str.split('').reverse().join('');
+
+
+// }
  
-console.log(myString('MongoDB'));
+// console.log(myString('MongoDB'));
 
 
 //D-TASK:
