@@ -1,15 +1,29 @@
-//F-TASK:
-function findDoublers (str) {
-  for (let alp of str) {
-    if (str.indexOf(alp) !== str.lastIndexOf(alp) )
-    return true;
+//G-TASK:
+function getHighestIndex(arr) {
+  let max = arr[0];
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+    }
   }
-  return false;
+  return arr.indexOf(max);
 }
 
-console.log(findDoublers('getElementById'));
+console.log(getHighestIndex([2, 12, 17, 58, 18, 58])); 
 
-console.log(findDoublers('document'));
+//F-TASK:
+// function findDoublers (str) {
+//   for (let alp of str) {
+//     if (str.indexOf(alp) !== str.lastIndexOf(alp) )
+//     return true;
+//   }
+//   return false;
+// }
+
+// console.log(findDoublers('getElementById'));
+
+// console.log(findDoublers('document'));
 
 
 //E-TASK:
