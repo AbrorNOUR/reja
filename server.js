@@ -1,7 +1,6 @@
 const http = require("http");
 const mongodb = require("mongodb");
 
-let db;
 const connectionString = "mongodb+srv://Nour:wgc5kKOs958n0VXB@cluster0.cqhoihe.mongodb.net/Reja?retryWrites=true&w=majority";
 
 mongodb.connect(connectionString, {
@@ -9,12 +8,16 @@ mongodb.connect(connectionString, {
     useUnifiedTopology: true,
 }, 
 (err, client) => {
-    if(err) console.log("ERROR onn connection MongoDB");
+    if(err) console.log("ERROR on connection MongoDB");
     else {
         console.log("MongoDB connection succeed")
-        
+  
          // db ni export qilmoqchi bo‘lsangiz:
-        module.exports = client;
+
+        // const db = client.db('reja')
+        const db = client.db();
+        module.exports = db;
+        // module.exports = client;
 
         const app = require("./app");
         const server = http.createServer(app);

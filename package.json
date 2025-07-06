@@ -9,11 +9,14 @@
     "train": "nodemon train.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "abrorNOUR",
+  "author": "AbrorNOUR",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.9.0",
+    "bcrypt": "^6.0.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
+    "express-session": "^1.18.1",
     "mongodb": "^3.2.6",
     "nodemon": "^3.1.10"
   }

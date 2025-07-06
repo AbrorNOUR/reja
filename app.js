@@ -5,45 +5,103 @@ console.log("web serverni boshlash");
 const express = require("express");
 const app = express();
 const fs = require("fs");
+const bcrypt = require('bcrypt');
+const session = require('express-session');
 
 
 // MongoDB chaqirish
-const db = require("./server").db();
+const db = require("./server");
 const mongodb = require("mongodb");
 
 
 
 
-// let user;
-// fs.readFile("database/user.json", "utf8", (err, data) => {
-//     if(err) {
-//         console.log("ERROR:", err);
-//     } else {
-//         user = JSON.parse(data)
-//     }
-// });
-
-// 1: Kirish code   backend serverni qurdik Node.jsda express frame workdan foydalanib web serverni qurdik
+// 1: Kirish code   /////backend serverni qurdik Node.jsda express frame workdan foydalanib web serverni qurdik
 app.use(express.static("public"));            
-app.use(express.json());                 // JSON uchun
-app.use(express.urlencoded({extended: true}));  // formalar uchun
+app.use(express.json());              
+app.use(express.urlencoded({extended: true})); 
+
+
 
 // 2: Session
+app.use(session({
+    secret: 'Nour@0432', 
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 } 
+  }));
 
-// 3: Views code  backend server ichida  frontend ni qurish 2 xil usuli bor  BSSR
+
+
+// 3: Views code 
 app.set("views", "views");
-app.set("view engine", "ejs"); // 1: usul tradational usul htmlni qurib olib browserga jonatamz  2: usul single app react
+app.set("view engine", "ejs"); 
 
 
 // 4: Routing code
-// app.get("/hello", function (req, res) {
-//     res.end(`<h1 style="background: yellow">HELLO WORLD</h1>`);
-// });
-// app.get("/gift", function (req, res) {
-//     res.end(`<h1>Siz sovgalar bolimidasiz</h1>`);
-// });
 
-app.post("/create-item", (req, res) => {
+// Register
+app.get('/register', (req, res) => {
+    res.render('register');
+});
+
+// Login
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
+// Logout
+app.get('/logout', (req, res) => {
+  req.session.destroy(() => {
+    res.redirect('/login');
+  });
+});
+
+// User register
+app.post('/register', async (req, res) => {
+  const { username, password } = req.body;
+  const hashed = await bcrypt.hash(password, 10);
+  await db.collection('users').insertOne({ username, password: hashed });
+  res.redirect('/login');
+});
+
+// User logIn
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+  const user = await db.collection('users').findOne({ username });
+    if (user && await bcrypt.compare(password, user.password)) {
+      req.session.user = { id: user._id, username: user.username };
+      res.redirect('/');
+    } else {
+      res.send('Login or password is wrong');
+  }
+});
+
+// Home page
+app.get('/', requireLogin, function(req, res){
+    db.collection('plans')
+        .find({userId: req.session.user.id})
+        .toArray((err, data) => {
+            if(err){
+                console.log(err);
+                res.end("something wnet wrong");
+            } else {
+                res.render('reja', {items: data, session: req.session});
+            }
+    });
+});
+
+function requireLogin(req, res, next) {
+  if (!req.session.user) {
+    return res.redirect('/login');
+  }
+  next();
+}
+
+
+
+// create
+app.post("/create-item", requireLogin, (req, res) => {
     console.log("user entered /create-item");
     // console.log(req.body);
     const new_reja = req.body.reja;
@@ -57,12 +115,28 @@ app.post("/create-item", (req, res) => {
 });
 
 
-app.get('/develop', (req, res) => {
-    res.render("develop", { user: user });
-});
+// CheckBox
+app.post('/checkbox-item', requireLogin, (req, res) => {
+    const id = req.body.id;
+    const completed = req.body.completed;
+    db.collection('plans').updateOne(
+      { _id: new mongodb.ObjectId(id) },
+      { $set: { completed: completed } },
+      (err) => {
+        if (err) return res.status(500).json({ error: "Update failed" });
+        res.json({ success: true });
+      }
+    );
+  });
+
+
+/// develop
+// app.get('/develop', (req, res) => {
+//     res.render("develop", { user: user });
+// });
 
  // delete oper
-app.post("/delete-item", (req, res) => {
+app.post("/delete-item", requireLogin, (req, res) => {
     const id = req.body.id;   
     db.collection("plans").deleteOne({_id: new mongodb.ObjectId(id)}, function(err, data) {
         res.json({state: "success" });
@@ -70,7 +144,7 @@ app.post("/delete-item", (req, res) => {
 });
 
 // API edit oper
-app.post("/edit-item", (req, res) => {
+app.post("/edit-item", requireLogin,(req, res) => {
     const data = req.body;
     console.log(req.body);
 
@@ -85,7 +159,7 @@ app.post("/edit-item", (req, res) => {
 });
 
 // delete all
-app.post("/delete-all", (req, res) => {
+app.post("/delete-all", requireLogin, (req, res) => {
     if(req.body.delete_all) {
         db.collection("plans").deleteMany(function() {
             res.json({state: "hamma rejalar ochirildi"});
@@ -94,21 +168,20 @@ app.post("/delete-all", (req, res) => {
 });
 
 
-app.get("/", function (req, res) {
-    console.log("user entered /");
-    db.collection("plans")
-    .find()
-    .toArray((err, data) => {
-        if(err) {
-            console.log(err);
-            res.end("something went wrong");
-        } else {
-            // console.log(data);
-            res.render("reja", {items: data });
-        }
-    });
-});
+// app.get("/", function requireLogin (req, res) {
+//     console.log("user entered /");
+//     db.collection("plans")
+//     .find()
+//     .toArray((err, data) => {
+//         if(err) {
+//             console.log(err);
+//             res.end("something went wrong");
+//         } else {
+//             // console.log(data);
+//             res.render("reja", {items: data });
+//         }
+//     });
+// });
 
 module.exports = app;
-
 

@@ -17,6 +17,7 @@ function itemTemplate(item) {
 
 let createField = document.getElementById("create-field")
 
+// Create oper
 document.getElementById("create-form").addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -33,8 +34,31 @@ axios
 
 });
 
+// Checkbox oper
+document.addEventListener('change', function(e){
+    if (e.target.classList.contains('complete-checkbox')){
+        const checkbox = e.target;
+        const id = checkbox.getAttribute('data-id');
+        const completed = checkbox.checked;
+        axios
+      .post("/checkbox-item", { id: id, completed: completed })
+      .then(() => {
+        const textEl = checkbox.closest("li").querySelector(".item-text");
+        if (completed) {
+          textEl.classList.add("text-decoration-line-through", "text-muted");
+        } else {
+          textEl.classList.remove("text-decoration-line-through", "text-muted");
+        }
+      })
+      .catch(() => {
+        alert("Somthing went wrong in checkbox part!");
+      });
+  }
+});
+
+
 document.addEventListener("click", function(e) {
-    // delete oper
+    // Delete oper
     console.log(e.target);
     if(e.target.classList.contains("delete-me")) {
         if(confirm("Aniq ochirmoqchimisz?")) {
@@ -72,6 +96,7 @@ document.addEventListener("click", function(e) {
     }
 });
 
+// Delete all
 document.getElementById("clean-all").addEventListener("click",function(){
     axios.post("/delete-all", { delete_all: true}).then(response =>{
         alert(response.data.state);
